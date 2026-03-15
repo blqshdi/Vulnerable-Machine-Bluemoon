@@ -40,7 +40,7 @@ Result:
 192.168.0.75 
 ```
 
-Screenshot: screenshots/attacker-ip.png
+Screenshot: screenshots/ifconfig.png
 
 
 ## Step 2: Discover Hosts in Network
