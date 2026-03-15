@@ -51,7 +51,28 @@ Command:
 
 ```bash
 ifconfig 
+```
 
-## Step 2: Identify Attacker IP
+Result:
+```bash
+192.168.0.75 
+```
+
+Screenshot: screenshots/attacker-ip.png
+
+
+## Step 2: Discover Target Machine
 
 Command:
+
+```bash
+sudo netdiscover
+```
+
+Result:
+```bash
+192.168.0.65  Target
+```
+
+Screenshot: screenshots/netdiscover.png
+
