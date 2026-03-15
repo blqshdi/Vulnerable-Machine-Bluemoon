@@ -52,3 +52,6 @@ Command:
 ```bash
 ifconfig 
 
+## Step 2: Identify Attacker IP
+
+Command:
