@@ -1,31 +1,54 @@
-BlueMoon: 2021 VulnHub Walkthrough
-Overview
+# BlueMoon: 2021 VulnHub Walkthrough
 
-This repository documents the penetration testing process performed on the BlueMoon: 2021 vulnerable machine from VulnHub. The objective is to discover vulnerabilities, exploit them, and obtain root access on the target system.
+![VulnHub](https://img.shields.io/badge/VulnHub-BlueMoon-blue)
+![Difficulty](https://img.shields.io/badge/Difficulty-Beginner-green)
+![Lab Type](https://img.shields.io/badge/Lab-Boot2Root-orange)
 
-Difficulty: Beginner
-Platform: VulnHub
+---
 
-Tools Used
+## Table of Contents
 
-Kali Linux
+- [Overview](#overview)
+- [Tools Used](#tools-used)
+- [Step 1: Identify Attacker IP](#step-1-identify-attacker-ip)
+- [Step 2: Discover Network Hosts](#step-2-discover-network-hosts)
+- [Step 3: Port Scanning](#step-3-port-scanning)
+- [Step 4: Web Enumeration](#step-4-web-enumeration)
+- [Step 5: SSH Brute Force](#step-5-ssh-brute-force)
+- [Step 6: Privilege Escalation](#step-6-privilege-escalation)
+- [Step 7: Capture Root Flag](#step-7-capture-root-flag)
+- [Attack Summary](#attack-summary)
+- [Security Lessons](#security-lessons)
+- [Conclusion](#conclusion)
+- [Screenshots Folder Structure](#screenshots-folder-structure)
 
-Netdiscover
+---
 
-Nmap
+## Overview
 
-Gobuster
+This repository documents a penetration testing lab on **BlueMoon: 2021** VulnHub VM.  
+Objective: discover vulnerabilities, exploit them, and obtain root access.
 
-Dirb
+- Difficulty: Beginner  
+- Platform: VulnHub  
 
-Hydra
+---
 
-Step 1: Identify Attacker IP
+## Tools Used
 
-First, determine the IP address of the attacker machine.
+- :contentReference[oaicite:0]{index=0}  
+- :contentReference[oaicite:1]{index=1}  
+- :contentReference[oaicite:2]{index=2}  
+- :contentReference[oaicite:3]{index=3}  
+- :contentReference[oaicite:4]{index=4}  
+- :contentReference[oaicite:5]{index=5}  
 
+---
+
+## Step 1: Identify Attacker IP
+
+Command:
+
+```bash
 ifconfig
-
-Result:
-
 Attacker IP: 192.168.0.75
